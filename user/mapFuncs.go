@@ -237,10 +237,13 @@ func (m *Map) summonMonster(coords Coords, r string) {
 	}
 
 	chance := MONSTER_SUMMON_CHANCE*3
+
+	summoned := 0
 	
-	for Chance(chance) {
+	for Chance(chance) && summoned <= 1 {
 		monst = append(monst, MONSTER_DISTRIBUTION.Fetch())
 		chance /= 3
+		summoned++
 	}
 
 	m.Monsters[coords.String()] = monst
